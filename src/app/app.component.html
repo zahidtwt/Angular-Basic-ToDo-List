@@ -2,14 +2,14 @@
   <div class="todo-list">
     <h1>Todo List</h1>
     <div>
-      <input type="text" placeholder="Add a new task...">
-      <button type="submit">Add</button>
+      <input [(ngModel)]="todo.title" type="text" placeholder="Add a new task...">
+      <button [disabled]="!todo.title" (click)="addTodo()" type="submit">{{todo.id ? "Update" : "Add"}}</button>
     </div>
     <ul>
-      <li>
-        <label for="task">1. Create todo list app</label>
-        <i class="fa fa-pencil"></i>
-        <i class="fa fa-times"></i>
+      <li *ngFor="let todo of todoList">
+        <label for="task">{{todo.title}}</label>
+        <i (click)="editTodo(todo)" class="fa fa-pencil"></i>
+        <i (click)="deleteTodo(todo.id)" class="fa fa-times"></i>
       </li>
     </ul>
 
